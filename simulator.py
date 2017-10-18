@@ -65,12 +65,4 @@ def season_simulator(teams, num_playoff_teams, simulations):
     # Sort teams by playoff percentage
     sorted_teams = sorted(teams, key=lambda x: x["playoff_percentage"], reverse=True)
 
-    # Do I even need to do this anymore?  I'm pretty sure I did this to fix a problem I don't have anymore
-    playoff_data = []
-    for i in range(0, len(sorted_teams)):
-        playoff_data.append(sorted_teams[i]["icon"])
-        playoff_data.append(sorted_teams[i]["name"])
-        playoff_data.append(sorted_teams[i]["avg_wins"])
-        playoff_data.append(sorted_teams[i]["playoff_percentage"])
-
-    return playoff_data
+    return sorted_teams
