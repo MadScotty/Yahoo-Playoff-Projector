@@ -14,7 +14,7 @@ def season_simulator(teams, num_playoff_teams, simulations):
     for season in range(0, simulations):
         # Reset wins for the new season
         for i in teams:
-            i["season_wins"] = i["wins"]
+            i["season_wins"] = i["wins"] + (i["ties"] / 2)
 
         # For each week
         for week in range(0, len(teams[0]["rem_sched"])):
@@ -46,9 +46,8 @@ def season_simulator(teams, num_playoff_teams, simulations):
             teams_above = 0
             for j in teams:
                 if i["season_wins"] <= j["season_wins"]:
-                    if i["season_wins"] == j["season_wins"] and i["ppg"] > j["ppg"]:
-                        continue
-                    teams_above += 1
+                    if i["season_wins"] != j["season_wins"] or i["ppg"] > j["ppg"]:
+                        teams_above += 1
             if teams_above < num_playoff_teams:
                 i["total_berths"] += 1
 
